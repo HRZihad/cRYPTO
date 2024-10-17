@@ -1,16 +1,12 @@
 import { Box, Grid,  Typography, useTheme } from "@mui/material";
-import React, { useEffect } from "react";
+import React from "react";
 import user from "../../../assets/images/user.jpg";
-import axios from "axios";
 import InvoiceDetails from "./InvoiceDetails";
 
 const UnPaidInvoices = () => {
   const theme = useTheme();
 
-  useEffect(() => {
-      axios.get("./data.json")
-      .then( res => console.log(res.data))
-  },[])
+ 
   return (
     <Box sx={{}} className="">
       <Grid container spacing={2}>
@@ -85,7 +81,9 @@ const UnPaidInvoices = () => {
             borderRadius: "20px",
             padding: "20px",
             
-          }}><InvoiceDetails></InvoiceDetails></Box>
+          }}>
+            <InvoiceDetails></InvoiceDetails>
+          </Box>
         </Grid>
       </Grid>
     </Box>

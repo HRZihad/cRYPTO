@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PropTypes from "prop-types";
@@ -40,10 +40,13 @@ function a11yProps(index) {
 const TabSection = () => {
   const theme = useTheme();
   const [value, setValue] = React.useState(2);
+  const [tabName, setTabName] = useState("Unpaid");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    setTabName(event.target.innerText);
   };
+ 
   return (
     <Box
       sx={{
@@ -63,10 +66,11 @@ const TabSection = () => {
           sx={{
             color: theme.palette.text.white,
             borderTopRightRadius: "20px",
+            textTransform: "capitalize",
             
           }}
         >
-          Unpaid Invoices
+          {tabName.toLowerCase().includes("invoice")? tabName: `${tabName} Invoices`} 
         </Typography>
         <Box sx={{
             position: "relative",
@@ -118,11 +122,14 @@ const TabSection = () => {
               sx={{
                 border: `1px solid ${theme.palette.primary.semiBlue}`,
                 borderRadius: "24px",
-                fontSize: "14px",
+                fontSize: "12px",
+                minHeight: "36px",
+                maxHeight: "42px",
                 mr: 1,
                 "&.Mui-selected": {
                   borderBottom: "none",
                   backgroundColor: theme.palette.primary.active,
+                  color: theme.palette.text.default
                 },
               }}
               label="All Invoices"
@@ -133,10 +140,13 @@ const TabSection = () => {
                 border: `1px solid ${theme.palette.primary.semiBlue}`,
                 borderRadius: "24px",
                 fontSize: "14px",
+                minHeight: "36px",
+                maxHeight: "42px",
                 mr: 1,
                 "&.Mui-selected": {
                   borderBottom: "none",
                   backgroundColor: theme.palette.primary.active,
+                  color: theme.palette.text.default
                 },
               }}
               label={
@@ -167,9 +177,12 @@ const TabSection = () => {
                 border: `1px solid ${theme.palette.primary.semiBlue}`,
                 borderRadius: "24px",
                 fontSize: "14px",
+                minHeight: "36px",
+                maxHeight: "44px",
                 "&.Mui-selected": {
                   borderBottom: "none",
                   backgroundColor: theme.palette.primary.active,
+                  color: theme.palette.text.default
                 },
               }}
               label={
